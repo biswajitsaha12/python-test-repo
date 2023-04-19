@@ -3,24 +3,34 @@ password = str(input("enter password: "))
 flag = 0
 
 while True:
-    if (len(password) < 8 or len(password) > 16): #length
+    if len(password) < 8:
         flag = -1
+        print("Passing length is less than 8")
         break
-    elif not re.search(r"[a-z]", password): #lowercase
+    elif len(password) > 16:
         flag = -1
+        print("Passing length is more than 16")
         break
-    elif not re.search(r"[A-Z]", password): #uppercase
+    elif not re.search(r"[a-z]", password): 
         flag = -1
+        print("Passing must contain a lowercase letter")
         break
-    elif not re.search(r"[0-9]", password): #number
+    elif not re.search(r"[A-Z]", password): 
         flag = -1
+        print("Passing must contain an Uppercase letter")
         break
-    elif not re.search(r"[ !#$%&'()*+,-./[\\\]^_`{|}~]", password): #special character
+    elif not re.search(r"[0-9]", password): 
         flag = -1
+        print("Passing must contain a number")
         break
-    for i in range(len(password)-1): #consecutive characters
+    elif not re.search(r"[ !#$%&'()*+,-\./[\\\]^_`{|}~]", password): 
+        flag = -1
+        print("Password must contain a special character")
+        break
+    for i in range(len(password)-1): 
         if password[i] == password[i+1]:
             flag = -1
+            print("Password must not have two consecutive characters that are same")
             break
     else:
         flag = 0
