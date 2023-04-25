@@ -1,24 +1,27 @@
 try:
-  def cuberoot(num, step=0.01):
-    guess = 0
-    guess_count = 0
-    ep = 0.01
-    while(abs((guess**3)-num) >= ep) and (guess<=num):
-      guess += step
-      #print("guess:",guess)
-      guess_count+= 1
-      #print("guess count:",guess_count)
+  def cuberoot(n):
+    start = 0
+    end = n
+    e = 0.001
+    
+    while (True) :
+      mid = (start + end) / 2
+      diff = abs((mid**3 - n))
+      n_steps = n_steps + 1
       
-    #print("total guesses: ",guess_count)
-    if (abs((guess**3)-num) >= ep):
-      return print("failed to get cube root")
-    else:
-      return print("approx. cuberoot is: ",guess)
-      
-  num = float(input("enter a positive number to find it's cuberoot: "))
-  if (num < 0):
+      if (diff <= e):
+        return mid       
+      elif ((mid**3) > n) :
+        end = mid
+      else:
+        start = mid
+               
+  n = float(input("enter number: "))
+  if (n<0):
     print("Invalid input, expected a positive number")
   else:
-    result = cuberoot(num)
+    result = cuberoot(n)
+    print("Cube root is", round(result,3))
+
 except ValueError:
   print("Invalid input, expected a positive number")
